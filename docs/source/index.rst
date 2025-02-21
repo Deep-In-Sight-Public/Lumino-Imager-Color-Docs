@@ -5,181 +5,238 @@ Lumino Imager Color User Manual
 .. toctree::
    :maxdepth: 2
    :hidden:
-   :caption: development
-   
-   /dev_env/development
-   /dev_env/changelog
+   :caption: 개요
+
+   /intro_env/about
 
 .. toctree::
    :maxdepth: 2
    :hidden:
-   :caption: execution
-   
-   /exec_env/execution
-   /exec_env/changelog
+   :caption: Specification
+
+   /spec_env/product
+   /spec_env/system
+   /spec_env/srs
+   /spec_env/feature
+   /spec_env/tech
+   /spec_env/design
 
 .. toctree::
    :maxdepth: 2
    :hidden:
-   :caption: operation
-   
-   /op_env/operation
-   /op_env/changelog
+   :caption: 개발 환경
+
+   /dev_env/impl
+   /dev_env/test
+   /dev_env/verify
+   /dev_env/cicd
+   /dev_env/quality
+   /dev_env/repo
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: 관리 환경
+
+   /mgmt_env/issues
+   /mgmt_env/changes
+   /mgmt_env/status
+   /mgmt_env/risk
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: 운영 환경
+
+   /op_env/deploy
+   /op_env/release
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Reference
+
+   /ref_env/changelog
+   /ref_env/icg
 
 
 .. contents:: Table of Contents
 
----------
+----------
 
-개발 환경
-========
+Welcome to ICG-Color Documentation
+==================================
 
-+------------+----------+-------------------------+
-| SW         | Description                        |
-+============+==========+=========================+
-| OS         | ``Windows 11``                     |
-+------------+----------+-------------------------+
-| IDE        | ``Qt 5.15.2``                      |
-+------------+----------+-------------------------+
-| Compiler   | ``MSVC2019``                       |
-+------------+----------+-------------------------+
+- 형광 영상 장비를 이용한 첨단 종양 수술에 사용되는 영상 장비를 개발중이며, 실시간 형광 이미징 기술을 활용하여 종양과 정상 조직을 명확하게 구분하고, 보다 정밀한 수술이 가능하도록 지원하는 것을 목표로 한다.
+- ( 형광 영상 장비를 이용한 첨단 종양 수술 관련 자세한 정보는 여기에_ )
 
-:doc:`Changelog </dev_env/changelog>`
-    개발 환경 변경 사항.
+.. _여기에: https://deep-in-sight-lumino-imager-color-private.readthedocs.io/ko/latest/ref_env/icg.html
 
+.. raw:: html
 
-실행 환경
-========
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
+        <iframe src="https://www.youtube.com/embed/FKaYvVP2f4o" frameborder="0" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+    </div>
 
-+------------+----------+-------------------------+
-| SW         | Description                        |
-+============+==========+=========================+
-| OS         | ``Windows 11``                     |
-+------------+----------+-------------------------+
-| Framework  | T.B.D                              |
-+------------+----------+-------------------------+
-| Stack      | T.B.D                              |
-+------------+----------+-------------------------+
-
-
-실행 방법
---------
-
-#. ToF camera 드라이버 설치
-#. PC 에 연결 후 ( I/F: USB ) 장치 인식 상태 확인 :menuselection:`제어판 --> 장치 관리자`
-#. `Git for Windows <https://git-scm.com/download/win>`__ 설치.
-
-    - if ``64-bit OS`` : Download :guilabel:`64-bit Git for Windows Setup`.
-    - if ``32-bit OS`` : Download :guilabel:`32-bit Git for Windows Setup`.
-
-#. 실행 파일 다운로드
-
-   .. code-block:: window
-
-    PS c:\work> git clone ssh://meerecompany@220.78.49.161:2222/repo/meerecompany/vomasys-release
-
-#. :guilabel:`파일 탐색기` 실행 후 작업 디렉토리 ``c:\work\vomasys-release\build-src-Desktop_Qt_5_15_2_MSVC2019_64bit-Release`` 에 있는 ``BoxDimensionDetectionPrototype.exe`` 를 실행한다. 
-
-실행 화면
---------
+----------
 
 .. tabs::
-
-    .. tab:: 실행 화면
-        
-        .. figure:: static/app.jpeg
-
-            택배물 안착 및 부피 측정 요청
-
-    .. tab:: 측정
-        
-        .. figure:: static/capture.jpeg
-
-            택배물 가로 세로 길이 계측 및 면적 산정, 높이 계측
-
-    .. tab:: 결과
-        
-        .. figure:: static/result.jpeg
-
-            택배물 부피 산정
-
-    .. tab:: 실행 흐름
-        
-        .. figure:: static/flow.png
-
-
-측정 방법
---------
-
-.. important::
-
-    :menuselection:`Calibration --> Range Setting --> Capture (부피 측정)` 순서로 진행하세요.
-
-    .. list-table:: 
-
-        * - .. figure:: static/capture_button.png
-
-            Capture
     
-          - .. figure:: static/cal_button.png
+    .. tab:: White Light Mode
+        
+        .. figure:: static/icg-color-white-light-mode.png
+            
+            출처: https://www.mdpi.com/1648-9144/59/9/1530
 
-            Calibration
-    
-          - .. figure:: static/range_button.png
+    .. tab:: NIR/ICG Overay Mode
+        
+        .. figure:: static/icg-color-overlay.png
 
-            Range Setting
+            출처: https://www.mdpi.com/1648-9144/59/9/1530
 
-.. warning::
+    .. tab:: NIR/ICG Intensity Map Mode
+        
+        .. figure:: static/icg-color-overlay-intensity-map.png
 
-    ROI 영역 지정 시 반드시 :menuselection:`좌상단 --> 우하단` 방향으로 좌표를 지정해야 하며, 이 지침을 지키지 않을 시 제대로 동작하지 않을 수 있습니다.
-
-.. tabs::
-
-    .. tab:: Calibration
-
-        1. Depth Image에서 ROI로 지정할 :menuselection:`좌상단 --> 우하단` 좌표를 선택하여 사각형 ROI 지정한다.
-        2. 지정 후 지정된 영역을 제외한 다른 영역을 선택하여 셋팅을 완료한다.
-
-        .. figure:: static/4.jpeg
-
-        .. figure:: static/5.jpeg
-
-
-    .. tab:: Range Setting
-
-        1. Calibration과 동일한 방법으로 박스를 올려 둘 영역을 지정한다.
-        2. 지정 후 지정된 영역을 제외한 다른 영역을 선택하여 셋팅을 완료한다.
-
-        .. figure:: static/6.jpeg
-
-:doc:`Changelog </exec_env/changelog>`
-    실행 환경 변경 사항.
-
-
-검증 환경
-========
-
-- 부피 측정 장비 1set
-- 박스 3ea ( small, medium, big )
-
-.. important::
-
-    플레이트와 거리 측정 센서와의 거리는 현재 0.710mm (71Cm)이며 해당 높이에 대한 offset 값이 적용되어 있다.
+            출처: https://www.mdpi.com/1648-9144/59/9/1530
 
 .. list-table:: 
 
-    * - .. figure:: static/1.jpeg
+    * - .. figure:: static/icg-color-white-light-mode.png
+            :width: 100%
+            :alt: NIR/ICG White Light Mode
 
-      - .. figure:: static/2.jpeg
+      - .. figure:: static/icg-color-overlay.png
+            :width: 100%
+            :alt: NIR/ICG Overay Mode
 
-      - .. figure:: static/3.jpeg
+      - .. figure:: static/icg-color-overlay-intensity-map.png
+            :width: 100%
+            :alt: NIR/ICG Intensity Map Mode
 
+----------
+
+제품 구성
+---------
+
+:doc:`하드웨어 <spec_env/usb>`
+    ...
+
+:doc:`소프트웨어 <spec_env/usb>`
+    ...
+
+시스템 사양
+-----------
+
+:doc:`구성 요소 <spec_env/system>`
+    ...
+
+:doc:`성능 목표 <spec_env/system>`
+    ...
+
+:doc:`구동 환경 <spec_env/system>`
+    시스템의 하드웨어 구성요소를 초기화하고 부팅하는 과정을 설명합니다.
+
+:doc:`동작 환경 <spec_env/system>`
+    ...
+
+요구 사항 명세서
+---------------
+
+:doc:`요구 사항 <spec_env/system>`
+    ...
+
+:doc:`개발 범위 <spec_env/system>`
+    ...
+
+기능 명세서
+-----------
+
+:doc:`기능 정의 <spec_env/system>`
+    ...
+
+기술 명세서
+-----------
+
+:doc:`소프트웨어 스택 <spec_env/system>`
+    시스템 운영에 필요한 소프트웨어 계층 구조를 설명합니다.
+    운영체제, 미들웨어, 응용 프로그램 등 각 계층별 구성요소와
+    버전 정보, 의존성 관계를 포함합니다.
+    또한 드라이버, 라이브러리, 프레임워크 등
+    시스템 구동에 필요한 모든 소프트웨어 요소들의 구성을 설명합니다.
+
+:doc:`소프트웨어 아키텍처 <spec_env/system>`
+    ...
+
+설계 사양
+---------
+
+:doc:`설계 <spec_env/system>`
+    ...
+
+:doc:`구현 <spec_env/system>`
+    시스템의 주요 기능과 모듈별 구현 방법을 설명합니다.
+    프로그래밍 언어, 프레임워크, 라이브러리 등 개발 도구와 코드 구조, 주요 알고리즘, API 명세를 포함합니다.
+
+:doc:`실행 환경 <spec_env/system>`
+    ...
+
+개발 환경
+---------
+
+:doc:`시험 <dev_env/test>`
+    소프트웨어 품질 보증을 위한 테스트 방법론과 절차를 설명합니다.
+    단위 테스트, 통합 테스트, 시스템 테스트, 성능 테스트 등
+    각종 테스트 케이스와 자동화 도구 활용 방법을 포함합니다.
+
+:doc:`검증 <dev_env/test>`
+    개발된 시스템의 요구사항 충족 여부를 검증하는 방법을 설명합니다.
+    기능 검증, 성능 검증, 안정성 검증 등
+    품질 기준 충족 여부를 확인하는 절차를 포함합니다.
+
+:doc:`CI/CD <dev_env/deploy>`
+    소프트웨어 빌드, 패키징 및 배포 프로세스를 설명합니다.
+    컴파일 방법, 의존성 관리, 설치 패키지 생성,
+    버전 관리 및 릴리스 절차를 포함합니다.
+
+:doc:`코드 품질 <dev_env/deploy>`
+    소프트웨어 빌드, 패키징 및 배포 프로세스를 설명합니다.
+    컴파일 방법, 의존성 관리, 설치 패키지 생성,
+    버전 관리 및 릴리스 절차를 포함합니다.
+
+:doc:`형상 관리 <dev_env/repo>`
+    소스 코드와 문서의 버전 관리 방법을 설명합니다.
+    Git 저장소 구조, 브랜치 전략, 커밋 규칙,
+    코드 리뷰 프로세스 등을 포함합니다.
+
+관리 환경
+---------
+
+:doc:`이슈 관리 <mgmt_env/issues>`
+    시스템 개발 및 운영 과정에서 발생하는 문제점, 개선사항 등을 추적하고 관리하는 프로세스
+
+:doc:`변경 관리 <mgmt_env/changes>`
+    요구사항(사용자, 시스템, 품질 등)과 그에 따른 시스템의 하드웨어 및 소프트웨어 구성요소의 변경사항을 관리하는 프로세스
+
+:doc:`현황 관리 <mgmt_env/status>`
+    프로젝트에서 소프트웨어 개발 전체 진행 상황을 한눈에 파악할 수 있는 대시보드를 제공
+
+:doc:`위험 관리 <mgmt_env/risk>`
+    프로젝트 진행 중 발생할 수 있는 위험 요소 식별 및 대응 전략을 설명
 
 운영 환경
-========
+---------
 
-`DeepInsight Issue Management System <http://220.78.49.161:8084/>`__
-    딥인사이트 이슈 관리 시스템 (협력 업체 대응 이슈)
-    
-:doc:`Changelog </op_env/changelog>`
-    운영 환경 변경 사항.
+:doc:`배포 <op_env/deploy>`
+    배포 단계에서는 애플리케이션의 설치, 구성, 업데이트 및 유지보수와 관련된 절차와 환경 구성이 상세히 설명됩니다.
+    개발 완료된 시스템을 운영 환경에 적용하기 위한 배포 방법과 절차를 설명합니다.
+
+
+Reference
+-----------
+
+:doc:`Changelog <ref_env/changelog>`
+    각 버전별 변경사항과 업데이트 내용을 기록합니다.
+
+:doc:`ICG <ref_env/icg>`
+    형광 영상 장비와 관련된 추가 정보와 참고 자료를 제공합니다.
